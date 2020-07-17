@@ -15,8 +15,51 @@
   </head>
 
   <body>
-    <div class="container">
+    <template id="categoryInput">
+      <div class="container mt-3 rounded border border-info p-2">
+        <h2>Add category</h2>
+        <form>
+          <div class="form-control">
+            <label for="categoryName">Category Name</label>
+            <input type="text" name="categoryName" id="categoryName" autocomplete="off" />
+          </div>
+          <button type="submit">ADD CATEGORY</button>
+        </form>
+      </div>
+    </template>
 
+    <template id="productInput">
+      <div class="container mt-3 rounded border border-info p-2">
+        <h2>Add product</h2>
+        <form id="productInputForm">
+          <div class="form-control">
+            <label for="productName">Product</label>
+            <input type="text" name="productName" id="productName" autocomplete="off"/>
+          </div>
+          <div class="form-control">
+            <label for="pcs">pcs</label>
+            <input type="radio" name="productQuantityType" id="pcs" value='pcs' checked/>
+            <label for="kg">kg</label>
+            <input type="radio" name="productQuantityType" id="kg" value='kg' />
+          </div>
+          <div class="form-control">
+            <label for="productQuantity">Quantity</label>
+            <input type="number" name="productQuantity" id="productQuantity" />
+          </div>
+          <div class="form-control">
+            <label for="productCategory">Category</label>
+            <select name="productCategory" id="productCategory"> </select>
+          </div>
+          <button type="submit">ADD PRODUCT</button>
+        </form>
+      </div>
+    </template>
+
+    <div id="app" class="container-md p-3">
+      <header class="container rounded border border-primary p-2">
+        <h1>My Shopping List</h1>
+      </header>
+      <ul id="cat"></ul>
     </div>
   </body>
   <script type="text/javascript" src="js/index.min.js"></script>
