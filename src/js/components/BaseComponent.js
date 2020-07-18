@@ -1,12 +1,14 @@
 export default class BaseComponent {
-  constructor(id) {
-    this.templateId = document.getElementById(id);
-    const template = document.importNode(this.templateId.content, true);
-    this.element = template.firstElementChild;
+  constructor(id, parentId) {
+    this.template = document.getElementById(id);
+    this.parent = document.getElementById(parentId);
+    const templateContent = document.importNode(this.template.content, true);
+    this.element = templateContent.firstElementChild;
     this.element.id = id;
+    this.attachToParent();
   }
 
-  attachTo(parentElement) {
-    parentElement.appendChild(this.element);
+  attachToParent() {
+    this.parent.appendChild(this.element);
   }
 }
