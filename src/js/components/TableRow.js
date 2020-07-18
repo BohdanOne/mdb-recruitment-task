@@ -16,6 +16,7 @@ export default class TableRow extends BaseComponent {
     this.insertSaveBtn = this.insertSaveBtn.bind(this);
     this.increaseQuantity = this.increaseQuantity.bind(this);
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.handleDragStart = this.handleDragStart.bind(this);
     this.fillCells();
     this.activateListeners();
   }
@@ -34,6 +35,7 @@ export default class TableRow extends BaseComponent {
   }
 
   insertSaveBtn() {
+    // TODO: create component
     const saveBtn = document.createElement('button');
     saveBtn.classList.add('btn');
     saveBtn.classList.add('btn-outline-secondary');
@@ -48,7 +50,7 @@ export default class TableRow extends BaseComponent {
   }
 
   updateName() {
-    state.Products.updateItem(this.product, 'name', this.nameCell.innerText);
+    state.Products.updateItem(this.product.name, 'name', this.nameCell.innerText);
   }
 
   increaseQuantity() {
@@ -61,10 +63,16 @@ export default class TableRow extends BaseComponent {
     state.Products.updateItem(this.product, 'quantity', Number(this.product.quantity) - amount);
   }
 
+  handleDragStart(event) {
+    event.dataTransfer.setData('text/plain', this.product.name);
+    event.dataTransfer.effectAllowed = 'move';
+  }
+
   activateListeners() {
     this.removeBtn.addEventListener('click', this.removeRow);
     this.nameCell.addEventListener('click', this.insertSaveBtn, { once: true });
     this.increaseBtn.addEventListener('click', this.increaseQuantity);
     this.decreaseBtn.addEventListener('click', this.decreaseQuantity);
+    this.element.addEventListener('dragstart', this.handleDragStart);
   }
 }

@@ -46,9 +46,16 @@ export default class Store {
     this.updateListeners();
   }
 
-  updateItem(item, field, newValue) {
+  removeSimpleItem(item) {
     const items = this.readStore();
-    const itemIndex = items.findIndex((itemInStore) => itemInStore.name === item.name);
+    const filteredItems = items.filter((itemInStore) => itemInStore !== item);
+    localStorage.setItem(this.storeName, JSON.stringify(filteredItems));
+    this.updateListeners();
+  }
+
+  updateItem(itemName, field, newValue) {
+    const items = this.readStore();
+    const itemIndex = items.findIndex((itemInStore) => itemInStore.name === itemName);
     items[itemIndex][field] = newValue;
     localStorage.setItem(this.storeName, JSON.stringify(items));
     this.updateListeners();

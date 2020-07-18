@@ -14,15 +14,12 @@ export default class ListContainer extends BaseComponent {
     this.element.appendChild(this.heading);
     const categories = state.Categories.readStore();
     categories.forEach((category) => {
-      if (state.areProductsInCategory(category)) {
-        return new CategoryTable(
-          'categoryTable',
-          this.element.id,
-          `categoryTable--${category}`,
-          category
-        );
-      }
-      return null;
+      return new CategoryTable(
+        'categoryTable',
+        this.element.id,
+        `categoryTable--${category}`,
+        category
+      );
     });
   }
 }

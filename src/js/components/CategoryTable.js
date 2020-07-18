@@ -10,8 +10,14 @@ export default class CategoryTable extends BaseComponent {
     this.body = this.element.querySelector('tbody');
     this.body.id = `${category}Products`;
     this.total = this.element.querySelector('.totalInCategory');
+    this.removeBtn = this.element.querySelector('button');
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+    this.removeCategory = this.removeCategory.bind(this);
     this.renderTotals();
     this.renderRows();
+    this.activateListeners();
   }
 
   renderTotals() {
@@ -27,5 +33,32 @@ export default class CategoryTable extends BaseComponent {
     products.forEach((product) => {
       return new TableRow('productRow', this.body.id, `productRow--${product.name}`, product);
     });
+  }
+
+  handleDragOver(event) {
+    if (event.dataTransfer.types[0] === 'text/plain') {
+      event.preventDefault();
+    }
+    this.element.classList.add('dropzone');
+  }
+
+  handleDragLeave() {
+    this.element.classList.remove('dropzone');
+  }
+
+  handleDrop(event) {
+    const productName = event.dataTransfer.getData('text/plain');
+    state.Products.updateItem(productName, 'category', this.category);
+  }
+
+  removeCategory() {
+    state.Categories.removeSimpleItem(this.category);
+  }
+
+  activateListeners() {
+    this.element.addEventListener('dragover', this.handleDragOver);
+    this.element.addEventListener('dragleave', this.handleDragLeave);
+    this.element.addEventListener('drop', this.handleDrop);
+    this.removeBtn.addEventListener('click', this.removeCategory);
   }
 }
