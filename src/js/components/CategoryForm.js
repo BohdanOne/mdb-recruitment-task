@@ -2,8 +2,8 @@ import BaseComponent from './BaseComponent';
 import state from '../state/state';
 
 export default class CategoryForm extends BaseComponent {
-  constructor(templateId, parentId) {
-    super(templateId, parentId);
+  constructor(templateId, parentId, newElementId) {
+    super(templateId, parentId, newElementId);
     this.form = this.element.querySelector('form');
     this.addCategory = this.addCategory.bind(this);
     this.element.addEventListener('submit', this.addCategory);

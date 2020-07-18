@@ -2,8 +2,8 @@ import BaseComponent from './BaseComponent';
 import state from '../state/state';
 
 export default class ProductForm extends BaseComponent {
-  constructor(templateId, parentId) {
-    super(templateId, parentId);
+  constructor(templateId, parentId, newElementId) {
+    super(templateId, parentId, newElementId);
     this.form = this.element.querySelector('form');
     this.categorySelect = this.element.querySelector('select');
     this.quantityInput = this.element.querySelector('#productQuantity');
