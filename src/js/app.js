@@ -1,18 +1,17 @@
 import MainHeader from './components/MainHeader';
 import CategoryForm from './components/CategoryForm';
 import ProductForm from './components/ProductForm';
-import state from './state/state';
 import ListContainer from './components/ListContainer';
+import state from './state/state';
 
-const Header = new MainHeader('mainHeader', 'app', 'header');
-state.Products.addListener(Header.renderTotals);
+const UI = {
+  Header: new MainHeader('mainHeader', 'app', 'header'),
+  CategoryInput: new CategoryForm('categoryInput', 'app', 'categoryForm'),
+  ProductInput: new ProductForm('productInput', 'app', 'productForm'),
+  MainShoppingList: new ListContainer('listContainer', 'app', 'shoppingList'),
+};
 
-const CategoryInput = new CategoryForm('categoryInput', 'app', 'categoryForm');
-
-const ProductInput = new ProductForm('productInput', 'app', 'productForm');
-state.Categories.addListener(ProductInput.renderSelectOptions);
-
-const MainShoppingList = new ListContainer('listContainer', 'app', 'shoppingList');
-MainShoppingList.renderLists();
-state.Categories.addListener(MainShoppingList.renderLists);
-state.Products.addListener(MainShoppingList.renderLists);
+state.Products.addListener(UI.Header.renderTotals);
+state.Categories.addListener(UI.ProductInput.renderSelectOptions);
+state.Categories.addListener(UI.MainShoppingList.renderLists);
+state.Products.addListener(UI.MainShoppingList.renderLists);

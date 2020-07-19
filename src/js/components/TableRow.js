@@ -1,6 +1,6 @@
 import BaseComponent from './BaseComponent';
 import state from '../state/state';
-import SaveButton from './SaveButton';
+import Button from './Button';
 
 export default class TableRow extends BaseComponent {
   constructor(templateId, parentId, newElementId, product) {
@@ -39,10 +39,11 @@ export default class TableRow extends BaseComponent {
   }
 
   insertSaveBtn() {
-    return new SaveButton(
-      'saveButton',
+    return new Button(
+      'button',
       this.nameCell.id,
       `saveBtn--${this.product.name}`,
+      'save',
       this.updateName
     );
   }
