@@ -79,6 +79,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "core-js": "^3.6.5",
     "jspdf": "^1.5.3",
     "mdb-ui-kit": "1.0.0-alpha2"
   }
