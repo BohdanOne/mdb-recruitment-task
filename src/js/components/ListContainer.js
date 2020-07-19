@@ -33,7 +33,7 @@ export default class ListContainer extends BaseComponent {
       'button',
       this.newElementId,
       'exportToPdfBtn',
-      'export to pdf',
+      'export list to pdf',
       generatePdf,
       false
     );

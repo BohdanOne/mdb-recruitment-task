@@ -3,3 +3,14 @@
 .dropzone {
   background-color: rgb(223, 158, 158);
 }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+#app {
+  width: 800px;
+  max-width: 95vw;
+}

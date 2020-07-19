@@ -8,8 +8,7 @@ export default class TableRow extends BaseComponent {
     this.product = product;
     this.nameCell = this.element.querySelector('.row__productName');
     this.nameCell.id = `nameCell--${this.product.name}`;
-    this.pcsCell = this.element.querySelector('.row__pcs');
-    this.kgCell = this.element.querySelector('.row__kg');
+    this.quantityCell = this.element.querySelector('.row__quantity');
     this.removeBtn = this.element.querySelector('.row__remove');
     this.increaseBtn = this.element.querySelector('.row__increaseQuantity');
     this.decreaseBtn = this.element.querySelector('.row__decreaseQuantity');
@@ -25,13 +24,12 @@ export default class TableRow extends BaseComponent {
   }
 
   fillCells() {
-    const quantity = Number(this.product.quantity);
+    const quantity =
+      this.product.quantityUnit === 'pcs'
+        ? Number(this.product.quantity)
+        : Number(this.product.quantity).toFixed(1);
     this.nameCell.innerText = this.product.name;
-    if (this.product.quantityUnit === 'pcs') {
-      this.pcsCell.innerText = quantity;
-    } else if (this.product.quantityUnit === 'kg') {
-      this.kgCell.innerText = quantity.toFixed(1);
-    }
+    this.quantityCell.innerText = `${quantity}${this.product.quantityUnit}`;
   }
 
   removeRow() {
