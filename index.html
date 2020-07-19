@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shopping List</title>
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/index.min.css" />
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- COMPONENTS TEMPLATES -->
+    <template id="mainHeader">
+      <header class="container rounded border border-primary p-2">
+        <h1>My Shopping List</h1>
+        <p>
+          Total quantity of saved products: <span id="totalPcs"></span>and
+          <span id="totalKgs"></span>.
+        </p>
+      </header>
+    </template>
+
+    <template id="categoryInput">
+      <div class="container mt-3 rounded border border-info p-2">
+        <h2>Add category</h2>
+        <form>
+          <div class="form-control">
+            <label for="categoryName">Category Name</label>
+            <input type="text" name="categoryName" id="categoryName" autocomplete="off" required />
+          </div>
+          <button type="submit">ADD CATEGORY</button>
+        </form>
+      </div>
+    </template>
+
+    <template id="productInput">
+      <div class="container mt-3 rounded border border-info p-2">
+        <h2>Add product</h2>
+        <form>
+          <div class="form-control">
+            <label for="productName">Product</label>
+            <input type="text" name="productName" id="productName" autocomplete="off" required />
+          </div>
+          <div class="form-control">
+            <label for="quantityUnitPcs">pcs</label>
+            <input
+              type="radio"
+              name="productQuantityUnit"
+              id="quantityUnitPcs"
+              value="pcs"
+              required
+            />
+            <label for="quantityUnitKg">kg</label>
+            <input
+              type="radio"
+              name="productQuantityUnit"
+              id="quantityUnitKg"
+              value="kg"
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="productQuantity">Quantity</label>
+            <input type="number" name="productQuantity" id="productQuantity" min="0" required />
+          </div>
+          <div class="form-control">
+            <label for="productCategory">Category</label>
+            <select name="productCategory" id="productCategory" required></select>
+          </div>
+          <button type="submit">ADD PRODUCT</button>
+        </form>
+      </div>
+    </template>
+
+    <template id="listContainer">
+      <div class="container mt-3 rounded border border-success p-2">
+        <h2>Products added to the list</h2>
+      </div>
+    </template>
+
+    <template id="categoryTable">
+      <div class="singleCategory">
+        <div>
+          <h3></h3>
+          <button type="button" class="row__remove btn btn-outline-danger btn-sm m-0">
+            remove category
+          </button>
+        </div>
+        <table class="table table-striped table-hover btn-table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">pcs</th>
+              <th scope="col">kg</th>
+              <th scope="col">Change Quantity</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+            <th>Total in category:</th>
+            <td class="totalInCategory"></td>
+            <td></td>
+          </tfoot>
+        </table>
+      </div>
+    </template>
+
+    <template id="productRow">
+      <tr draggable="true">
+        <td class="row__productName" contenteditable="true"></td>
+        <td class="row__pcs"></td>
+        <td class="row__kgs"></td>
+        <td>
+          <button type="button" class="row__increaseQuantity btn btn-outline-success btn-sm m-0">
+            +
+          </button>
+          <button type="button" class="row__decreaseQuantity btn btn-outline-secondary btn-sm m-0">
+            -
+          </button>
+        </td>
+        <td>
+          <button type="button" class="row__remove btn btn-outline-danger btn-sm m-0">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </template>
+
+    <template id='button'>
+      <button class="btn btn-outline-secondary btn-sm m-1"></button>
+    </template>
+
+    <!-- APP -->
+    <div id="app" class="container-md p-3"></div>
+  </body>
+  <script type="text/javascript" src="js/index.min.js"></script>
+</html>
