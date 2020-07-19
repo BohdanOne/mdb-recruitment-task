@@ -11,6 +11,7 @@ export default class TableRow extends BaseComponent {
     this.removeBtn = this.element.querySelector('.row__remove');
     this.increaseBtn = this.element.querySelector('.row__increaseQuantity');
     this.decreaseBtn = this.element.querySelector('.row__decreaseQuantity');
+    this.fillCells = this.fillCells.bind(this);
     this.removeRow = this.removeRow.bind(this);
     this.updateName = this.updateName.bind(this);
     this.insertSaveBtn = this.insertSaveBtn.bind(this);
@@ -22,11 +23,12 @@ export default class TableRow extends BaseComponent {
   }
 
   fillCells() {
+    const quantity = Number(this.product.quantity);
     this.nameCell.innerText = this.product.name;
     if (this.product.quantityUnit === 'pcs') {
-      this.pcsCell.innerText = this.product.quantity;
-    } else {
-      this.kgsCell.innerText = this.product.quantity.toFixed(1);
+      this.pcsCell.innerText = quantity;
+    } else if (this.product.quantityUnit === 'kg') {
+      this.kgsCell.innerText = quantity.toFixed(1);
     }
   }
 
@@ -55,12 +57,20 @@ export default class TableRow extends BaseComponent {
 
   increaseQuantity() {
     const amount = this.product.quantityUnit === 'pcs' ? 1 : 0.1;
-    state.Products.updateItem(this.product, 'quantity', Number(this.product.quantity) + amount);
+    state.Products.updateItem(
+      this.product.name,
+      'quantity',
+      Number(this.product.quantity) + amount
+    );
   }
 
   decreaseQuantity() {
     const amount = this.product.quantityUnit === 'pcs' ? 1 : 0.1;
-    state.Products.updateItem(this.product, 'quantity', Number(this.product.quantity) - amount);
+    state.Products.updateItem(
+      this.product.name,
+      'quantity',
+      Number(this.product.quantity) - amount
+    );
   }
 
   handleDragStart(event) {
