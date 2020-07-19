@@ -9,7 +9,7 @@ export default class TableRow extends BaseComponent {
     this.nameCell = this.element.querySelector('.row__productName');
     this.nameCell.id = `nameCell--${this.product.name}`;
     this.pcsCell = this.element.querySelector('.row__pcs');
-    this.kgsCell = this.element.querySelector('.row__kgs');
+    this.kgCell = this.element.querySelector('.row__kg');
     this.removeBtn = this.element.querySelector('.row__remove');
     this.increaseBtn = this.element.querySelector('.row__increaseQuantity');
     this.decreaseBtn = this.element.querySelector('.row__decreaseQuantity');
@@ -30,7 +30,7 @@ export default class TableRow extends BaseComponent {
     if (this.product.quantityUnit === 'pcs') {
       this.pcsCell.innerText = quantity;
     } else if (this.product.quantityUnit === 'kg') {
-      this.kgsCell.innerText = quantity.toFixed(1);
+      this.kgCell.innerText = quantity.toFixed(1);
     }
   }
 

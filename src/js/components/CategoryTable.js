@@ -21,10 +21,8 @@ export default class CategoryTable extends BaseComponent {
   }
 
   renderTotals() {
-    const { totalPcs, totalKgs } = state.calculateTotalInCategory(this.category);
-    this.total.innerText = `${totalPcs}pc${totalPcs !== 1 ? 's' : ''} and ${totalKgs.toFixed(1)}kg${
-      totalKgs !== 1 ? 's' : ''
-    }`;
+    const { totalPcs, totalKg } = state.calculateTotalInCategory(this.category);
+    this.total.innerText = `${totalPcs}pc${totalPcs !== 1 ? 's' : ''} and ${totalKg.toFixed(1)}kg`;
   }
 
   renderRows() {

@@ -5,14 +5,14 @@ export default class MainHeader extends BaseComponent {
   constructor(templateId, parentId, newElementId) {
     super(templateId, parentId, newElementId);
     this.pcsSpan = this.element.querySelector('#totalPcs');
-    this.kgsSpan = this.element.querySelector('#totalKgs');
+    this.kgSpan = this.element.querySelector('#totalKg');
     this.renderTotals = this.renderTotals.bind(this);
     this.renderTotals();
   }
 
   renderTotals() {
-    const { totalPcs, totalKgs } = state.calculateTotals();
+    const { totalPcs, totalKg } = state.calculateTotals();
     this.pcsSpan.innerText = `${totalPcs}pc${totalPcs !== 1 ? 's' : ''} `;
-    this.kgsSpan.innerText = `${totalKgs.toFixed(1)}kg${totalKgs !== 1 ? 's' : ''}`;
+    this.kgSpan.innerText = `${totalKg.toFixed(1)}kg`;
   }
 }

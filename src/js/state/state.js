@@ -17,13 +17,13 @@ const filterProductsByCategory = (category) =>
 
 const calculateTotalAmount = (products) => {
   let totalPcs = 0;
-  let totalKgs = 0;
+  let totalKg = 0;
   products.forEach((product) => {
     return product.quantityUnit === 'pcs'
       ? (totalPcs += Number(product.quantity))
-      : (totalKgs += Number(product.quantity));
+      : (totalKg += Number(product.quantity));
   });
-  return { totalPcs, totalKgs };
+  return { totalPcs, totalKg };
 };
 
 export default state;
