@@ -51,6 +51,8 @@ export default class CategoryTable extends BaseComponent {
   }
 
   removeCategory() {
+    const productsToRemove = state.productsInCategory(this.category);
+    productsToRemove.forEach((product) => state.Products.removeItem(product));
     state.Categories.removeItem(this.category);
   }
 
