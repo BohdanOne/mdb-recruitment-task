@@ -4,7 +4,7 @@ const state = {
   Categories: new Store('categories'),
   Products: new Store('products'),
   productsInCategory: (category) => filterProductsByCategory(category),
-  calculateTotals: () => calculateTotalAmount(state.Products.readStore()),
+  calculateTotals: () => calculateTotalAmount(state.Products.items()),
   calculateTotalInCategory: (category) => {
     const products = filterProductsByCategory(category);
     return calculateTotalAmount(products);
@@ -13,7 +13,7 @@ const state = {
 };
 
 const filterProductsByCategory = (category) =>
-  state.Products.readStore().filter((product) => product.category === category.name);
+  state.Products.items().filter((product) => product.category === category.name);
 
 const calculateTotalAmount = (products) => {
   let totalPcs = 0;

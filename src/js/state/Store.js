@@ -1,21 +1,21 @@
 export default class Store {
   constructor(storeName) {
     this.storeName = storeName;
-    this.items = [];
+    this.store = [];
     this.listeners = [];
-    this.readStore = this.readStore.bind(this);
-    this.writeToStore = this.writeToStore.bind(this);
+    this.items = this.items.bind(this);
+    this.addItem = this.addItem.bind(this);
     this.addListener = this.addListener.bind(this);
     this.updateListeners = this.updateListeners.bind(this);
     this.initialize();
   }
 
   initialize() {
-    const inStorage = this.readStore();
+    const inStorage = this.items();
     if (inStorage) {
-      this.items = [...inStorage];
+      this.store = [...inStorage];
     }
-    localStorage.setItem(this.storeName, JSON.stringify(this.items));
+    localStorage.setItem(this.storeName, JSON.stringify(this.store));
   }
 
   addListener(listener) {
@@ -24,30 +24,30 @@ export default class Store {
 
   updateListeners() {
     this.listeners.forEach((listener) => {
-      listener([...this.items]);
+      listener([...this.store]);
     });
   }
 
-  readStore() {
+  items() {
     return JSON.parse(localStorage.getItem(this.storeName));
   }
 
-  writeToStore(item) {
-    const items = this.readStore();
+  addItem(item) {
+    const items = this.items();
     items.push(item);
     localStorage.setItem(this.storeName, JSON.stringify(items));
     this.updateListeners();
   }
 
   removeItem(item) {
-    const items = this.readStore();
+    const items = this.items();
     const filteredItems = items.filter((itemInStore) => itemInStore.id !== item.id);
     localStorage.setItem(this.storeName, JSON.stringify(filteredItems));
     this.updateListeners();
   }
 
   updateItem(item, field, newValue) {
-    const items = this.readStore();
+    const items = this.items();
     const itemIndex = items.findIndex((itemInStore) => itemInStore.id === item.id);
     items[itemIndex][field] = newValue;
     localStorage.setItem(this.storeName, JSON.stringify(items));

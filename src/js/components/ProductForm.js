@@ -20,7 +20,7 @@ export default class ProductForm extends BaseComponent {
 
   renderSelectOptions() {
     this.categorySelect.innerHTML = '';
-    const categories = state.Categories.readStore();
+    const categories = state.Categories.items();
     categories.forEach((category) => {
       const option = document.createElement('option');
       option.value = category.name;
@@ -49,13 +49,13 @@ export default class ProductForm extends BaseComponent {
   addProduct(event) {
     event.preventDefault();
     const newProduct = {
-      id: state.Products.readStore().length + 1,
+      id: state.Products.items().length + 1,
       name: this.form.productName.value,
       quantityUnit: this.form.productQuantityUnit.value,
       quantity: this.form.productQuantity.value,
       category: this.form.productCategory.value,
     };
-    state.Products.writeToStore(newProduct);
+    state.Products.addItem(newProduct);
     this.form.reset();
   }
 }

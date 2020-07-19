@@ -3,7 +3,7 @@ import state from '../state/state';
 
 export default () => {
   const pdf = new JSPDF();
-  const categories = state.Categories.readStore();
+  const categories = state.Categories.items();
   let list = 'SHOPPING LIST \n\n';
   categories.forEach((category) => {
     list += `### ${category.name.toUpperCase()} ###\n`;

@@ -16,7 +16,7 @@ export default class ListContainer extends BaseComponent {
   renderLists() {
     this.element.innerHTML = '';
     this.element.appendChild(this.heading);
-    const categories = state.Categories.readStore();
+    const categories = state.Categories.items();
     categories.forEach((category) => {
       return new CategoryTable(
         'categoryTable',
