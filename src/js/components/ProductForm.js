@@ -23,8 +23,8 @@ export default class ProductForm extends BaseComponent {
     const categories = state.Categories.readStore();
     categories.forEach((category) => {
       const option = document.createElement('option');
-      option.value = category;
-      option.textContent = category;
+      option.value = category.name;
+      option.textContent = category.name;
       this.categorySelect.appendChild(option);
     });
   }
@@ -49,6 +49,7 @@ export default class ProductForm extends BaseComponent {
   addProduct(event) {
     event.preventDefault();
     const newProduct = {
+      id: state.Products.readStore().length + 1,
       name: this.form.productName.value,
       quantityUnit: this.form.productQuantityUnit.value,
       quantity: this.form.productQuantity.value,

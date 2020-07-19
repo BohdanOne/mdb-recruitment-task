@@ -50,30 +50,22 @@ export default class TableRow extends BaseComponent {
   }
 
   updateName() {
-    state.Products.updateItem(this.product.name, 'name', this.nameCell.innerText);
+    state.Products.updateItem(this.product, 'name', this.nameCell.innerText);
   }
 
   increaseQuantity() {
     const amount = this.product.quantityUnit === 'pcs' ? 1 : 0.1;
-    state.Products.updateItem(
-      this.product.name,
-      'quantity',
-      Number(this.product.quantity) + amount
-    );
+    state.Products.updateItem(this.product, 'quantity', Number(this.product.quantity) + amount);
   }
 
   decreaseQuantity() {
     const amount = this.product.quantityUnit === 'pcs' ? 1 : 0.1;
     if (this.product.quantity === 0) return;
-    state.Products.updateItem(
-      this.product.name,
-      'quantity',
-      Number(this.product.quantity) - amount
-    );
+    state.Products.updateItem(this.product, 'quantity', Number(this.product.quantity) - amount);
   }
 
   handleDragStart(event) {
-    event.dataTransfer.setData('text/plain', this.product.name);
+    event.dataTransfer.setData('text/plain', this.product.id);
     event.dataTransfer.effectAllowed = 'move';
   }
 

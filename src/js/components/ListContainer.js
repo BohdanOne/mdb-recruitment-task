@@ -21,7 +21,7 @@ export default class ListContainer extends BaseComponent {
       return new CategoryTable(
         'categoryTable',
         this.element.id,
-        `categoryTable--${category}`,
+        `categoryTable--${category.id}`,
         category
       );
     });

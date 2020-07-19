@@ -41,21 +41,14 @@ export default class Store {
 
   removeItem(item) {
     const items = this.readStore();
-    const filteredItems = items.filter((itemInStore) => itemInStore.name !== item.name);
+    const filteredItems = items.filter((itemInStore) => itemInStore.id !== item.id);
     localStorage.setItem(this.storeName, JSON.stringify(filteredItems));
     this.updateListeners();
   }
 
-  removeSimpleItem(item) {
+  updateItem(item, field, newValue) {
     const items = this.readStore();
-    const filteredItems = items.filter((itemInStore) => itemInStore !== item);
-    localStorage.setItem(this.storeName, JSON.stringify(filteredItems));
-    this.updateListeners();
-  }
-
-  updateItem(itemName, field, newValue) {
-    const items = this.readStore();
-    const itemIndex = items.findIndex((itemInStore) => itemInStore.name === itemName);
+    const itemIndex = items.findIndex((itemInStore) => itemInStore.id === item.id);
     items[itemIndex][field] = newValue;
     localStorage.setItem(this.storeName, JSON.stringify(items));
     this.updateListeners();

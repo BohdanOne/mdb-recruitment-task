@@ -9,11 +9,11 @@ const state = {
     const products = filterProductsByCategory(category);
     return calculateTotalAmount(products);
   },
-  areProductsInCategory: (category) => filterProductsByCategory(category).length > 0,
+  areProductsInCategory: (categoryId) => filterProductsByCategory(categoryId).length > 0,
 };
 
 const filterProductsByCategory = (category) =>
-  state.Products.readStore().filter((product) => product.category === category);
+  state.Products.readStore().filter((product) => product.category === category.name);
 
 const calculateTotalAmount = (products) => {
   let totalPcs = 0;

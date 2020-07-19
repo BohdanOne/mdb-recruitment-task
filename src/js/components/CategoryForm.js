@@ -11,8 +11,12 @@ export default class CategoryForm extends BaseComponent {
 
   addCategory(event) {
     event.preventDefault();
-    const newCategory = this.form.categoryName.value;
-    if (newCategory.length > 0) state.Categories.writeToStore(newCategory);
+    if (this.form.categoryName.value.length === 0) return;
+    const newCategory = {
+      id: state.Categories.readStore().length + 1,
+      name: this.form.categoryName.value,
+    };
+    state.Categories.writeToStore(newCategory);
     this.form.reset();
   }
 }

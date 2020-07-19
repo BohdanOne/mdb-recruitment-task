@@ -6,9 +6,9 @@ export default class CategoryTable extends BaseComponent {
   constructor(templateId, parentId, newElementId, category) {
     super(templateId, parentId, newElementId);
     this.category = category;
-    this.element.querySelector('h3').innerText = this.category;
+    this.element.querySelector('h3').innerText = this.category.name;
     this.body = this.element.querySelector('tbody');
-    this.body.id = `${category}Products`;
+    this.body.id = `${category.name}Products`;
     this.total = this.element.querySelector('.totalInCategory');
     this.removeBtn = this.element.querySelector('button');
     this.handleDragOver = this.handleDragOver.bind(this);
@@ -47,12 +47,12 @@ export default class CategoryTable extends BaseComponent {
   }
 
   handleDrop(event) {
-    const productName = event.dataTransfer.getData('text/plain');
-    state.Products.updateItem(productName, 'category', this.category);
+    const productId = event.dataTransfer.getData('text/plain');
+    state.Products.updateItem({ id: productId }, 'category', this.category.name);
   }
 
   removeCategory() {
-    state.Categories.removeSimpleItem(this.category);
+    state.Categories.removeItem(this.category);
   }
 
   activateListeners() {
