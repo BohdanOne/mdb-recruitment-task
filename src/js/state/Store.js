@@ -5,6 +5,7 @@ export default class Store {
     this.listeners = [];
     this.items = this.items.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.getItem = this.getItem.bind(this);
     this.addListener = this.addListener.bind(this);
     this.updateListeners = this.updateListeners.bind(this);
     this.initialize();
@@ -30,6 +31,11 @@ export default class Store {
 
   items() {
     return JSON.parse(localStorage.getItem(this.storeName));
+  }
+
+  getItem(id) {
+    const itemIndex = this.items().findIndex((itemInStore) => itemInStore.id === Number(id));
+    return this.items()[itemIndex];
   }
 
   addItem(item) {

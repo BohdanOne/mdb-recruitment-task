@@ -46,7 +46,8 @@ export default class CategoryTable extends BaseComponent {
 
   handleDrop(event) {
     const productId = event.dataTransfer.getData('text/plain');
-    state.Products.updateItem({ id: productId }, 'category', this.category.name);
+    const product = state.Products.getItem(productId);
+    state.Products.updateItem(product, 'category', this.category.name);
   }
 
   removeCategory() {
