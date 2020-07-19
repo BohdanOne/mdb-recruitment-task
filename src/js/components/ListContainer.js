@@ -10,9 +10,7 @@ export default class ListContainer extends BaseComponent {
     this.newElementId = newElementId;
     this.heading = this.element.querySelector('h2');
     this.renderLists = this.renderLists.bind(this);
-    this.insertExportBtn = this.insertExportBtn.bind(this);
     this.renderLists();
-    this.insertExportBtn();
   }
 
   renderLists() {
@@ -27,9 +25,17 @@ export default class ListContainer extends BaseComponent {
         category
       );
     });
+    this.insertExportBtn();
   }
 
   insertExportBtn() {
-    return new Button('button', this.newElementId, 'exportToPdfBtn', 'export to pdf', generatePdf);
+    return new Button(
+      'button',
+      this.newElementId,
+      'exportToPdfBtn',
+      'export to pdf',
+      generatePdf,
+      false
+    );
   }
 }

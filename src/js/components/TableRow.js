@@ -44,7 +44,8 @@ export default class TableRow extends BaseComponent {
       this.nameCell.id,
       `saveBtn--${this.product.name}`,
       'save',
-      this.updateName
+      this.updateName,
+      true
     );
   }
 
