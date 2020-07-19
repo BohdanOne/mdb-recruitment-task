@@ -62,6 +62,7 @@ export default class TableRow extends BaseComponent {
 
   decreaseQuantity() {
     const amount = this.product.quantityUnit === 'pcs' ? 1 : 0.1;
+    if (this.product.quantity === 0) return;
     state.Products.updateItem(
       this.product.name,
       'quantity',
